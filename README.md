@@ -1,5 +1,6 @@
 ## Expo Todo APP : TS
 
+
 ### Requirements
 
 - User opens the app and see a list of tasks categorized by status
@@ -26,3 +27,11 @@
   - mongodb Realm
   - redux-persist
   - react-native-dnd-board (or any other of your preference)
+
+# Useful stuff
+
+## Issue check
+
+```bash
+npx expo-doctor
+```
