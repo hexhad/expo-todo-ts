@@ -8,7 +8,7 @@ type Props = NativeStackScreenProps<StackParams, "Details">
 
 const TaskDetailsScreen: React.FC<Props> = ({ }) => {
     return (
-        <View className="flex-1">
+        <View className="flex-1 items-center justify-center bg-white">
             <Text>TaskDetails</Text>
             <TouchableOpacity onPress={() => RootNavigation.goBack()}>
                 <Text>goback</Text>
