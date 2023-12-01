@@ -1,19 +1,29 @@
 import { CaseReducer, PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export type todoType = {
-  dummy:boolean;
+  data: any;
 }
 
-const initialState : todoType = {
-  dummy:false,
-}
 
+const initialState: todoType = {
+  data: [
+    {
+      category: 'todo',
+      tasks: [
+
+      ]
+    }, {
+      category: 'done',
+      tasks: []
+    }
+  ],
+}
 
 const todoSlice = createSlice({
   name: 'todo',
   initialState,
   reducers: {
-    initTodo: (state,action) => ({
+    initTodo: (state, action) => ({
       ...state,
       dummy: false,
     }),
