@@ -22,6 +22,7 @@
   - React native (typescript preferred)
   - Redux-toolkit
   - React-navigation
+  
 - Optional libraries:
   - NativeWind
   - mongodb Realm
