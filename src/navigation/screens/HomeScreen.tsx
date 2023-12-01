@@ -18,7 +18,9 @@ const HomeScreen: React.FC<Props> = () => {
   const kanbanData = useSelector(getKabanBoard);
   const dispatch = useAppDispatch();
 
-  console.log('kanbanData',kanbanData);
+  const onPressActionButton = ():void => {
+    RootNavigation.navigate('Create')
+  }
   
   return (
     <SafeAreaView className="flex-1 items-center justify-center bg-white ">
@@ -29,7 +31,7 @@ const HomeScreen: React.FC<Props> = () => {
         dispatch(updateDraggedData(e))
       }}/>
 
-      <FloatingActionButton onPress={()=>{dispatch(addCardData({"child": {"description": "Learn more about the audience to whom you will be speaking", "id": "4", "name": "Analyze your audience",  current: 'TODO'}, "parent": {"id": 2, "name": "IN_PROGRESS"}}))}}/>
+      <FloatingActionButton onPress={onPressActionButton}/>
     </SafeAreaView>
   )
 }

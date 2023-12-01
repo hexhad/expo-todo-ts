@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react'
 
 export type RenderKanbanTilesProps = {
-    tasks: [];
+    tasks: {id:number}[];
 }
 export type KanbanBoardProps = PropsWithChildren & {
     data: { tasks: any, category: any }[];

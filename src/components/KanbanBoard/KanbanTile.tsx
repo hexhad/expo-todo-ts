@@ -4,8 +4,6 @@ import { DraxProvider, DraxView, DraxScrollView } from 'react-native-drax';
 import { KanbanTileProps } from './types';
 
 const KanbanTile: React.FC<KanbanTileProps> = ({ task }) => {
-    console.log(task);
-
     return (
         <DraxView
             key={task.id}

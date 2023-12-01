@@ -1,4 +1,4 @@
-import { CaseReducer, PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { CaseReducer, PayloadAction, createSlice, nanoid } from '@reduxjs/toolkit';
 
 type Task = {
   description: string;
@@ -7,7 +7,7 @@ type Task = {
   current: 'TODO' | 'IN_PROGRESS' | 'DONE'; // Assuming these are the possible task statuses
 };
 
-type Category = 'TODO' | 'IN_PROGRESS' | 'DONE';
+export type Category = 'TODO' | 'IN_PROGRESS' | 'DONE';
 
 type TodoType = {
   data: {
@@ -39,20 +39,28 @@ const todoSlice = createSlice({
   initialState,
   reducers: {
     addCardData: (state, action) => ({
-      data: [
-        {
-          category: 'TODO',
-          tasks: [
-            { description: "How did they use line and shape? How did they shade?", id: "4", name: "Look at drawings", current: 'TODO' }
-          ]
-        }, {
-          category: 'IN_PROGRESS',
-          tasks: []
-        }, {
-          category: 'DONE',
-          tasks: []
+      ...state,
+        data: state.data.map(({ category, tasks }) => {
+        if (category == action.payload.category) {
+          return {
+            category,
+            tasks: [
+              ...tasks,
+              {
+                description: action.payload.description,
+                id: nanoid(),
+                name: action.payload.name,
+                current: 'TODO'
+              }
+            ]
+          }
+        } else {
+          return {
+            category,
+            tasks
+          }
         }
-      ],
+      })
     }),
     updateDraggedData: (state, action) => {
       const shouldMoveCategory = action.payload.parent.category ?? 'TODO'
