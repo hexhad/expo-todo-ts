@@ -18,12 +18,14 @@ const HomeScreen: React.FC<Props> = () => {
   const kanbanData = useSelector(getKabanBoard);
   const dispatch = useAppDispatch();
 
-  console.log(kanbanData);
+  console.log('kanbanData',kanbanData);
   
   return (
     <SafeAreaView className="flex-1 items-center justify-center bg-white ">
       <KanbanBoard data={kanbanData} onUpdate={(e)=>{
-        console.log(e);
+        if(e.child.current===e.parent.category){
+          RootNavigation.navigate('Details',{e});
+        }
         dispatch(updateDraggedData(e))
       }}/>
 

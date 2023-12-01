@@ -7,8 +7,6 @@ import { nanoid } from '@reduxjs/toolkit';
 import { DraxWrapperProps, KanbanBoardProps, RenderKanbanTilesProps } from './types';
 
 const RenderKanbanTiles: React.FC<RenderKanbanTilesProps> = ({ tasks = [] }) => {
-    console.log('------------------------------->',tasks);
-    // return
     return tasks.map((task) => <KanbanTile  {...{ task }} />)
 }
 const DraxWrapper: React.FC<DraxWrapperProps> = ({ children, onUpdate, data }) => {
@@ -18,15 +16,13 @@ const DraxWrapper: React.FC<DraxWrapperProps> = ({ children, onUpdate, data }) =
     const key = nanoid();
     return <DraxView
         key={key}
-        style={styles.flex}
+        style={[styles.flex]}
         onReceiveDragDrop={onReceivedItem}
     >
         {children}
     </DraxView>
 }
 const KanbanBoard: React.FC<KanbanBoardProps> = ({ data = [], onUpdate }) => {
-console.log(data);
-
     return (
         <DraxProvider style={styles.flex}>
             <DraxScrollView contentContainerStyle={styles.draxScrollView} horizontal>
@@ -34,7 +30,7 @@ console.log(data);
                     return (
                         <View style={styles.mainContainer} key={index}>
                             <DraxWrapper onUpdate={onUpdate} data={{ category }}>
-                                <Text>{category}</Text>
+                                <Text className='text-red-200 text-lg'>{category}</Text>
                                 <RenderKanbanTiles {...{ tasks }} />
                             </DraxWrapper>
                         </View>
@@ -49,6 +45,6 @@ export default KanbanBoard
 
 const styles = StyleSheet.create({
     draxScrollView: { flexDirection: 'row' },
-    mainContainer: { width: 300, backgroundColor: 'gray', marginRight: 10, height: 500 },
+    mainContainer: { width: 300, backgroundColor: '#374151', marginRight: 10, flex:1,padding:10},
     flex: { flex: 1 }
 })
