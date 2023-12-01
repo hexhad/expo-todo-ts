@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import 'react-native-gesture-handler';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from "./screens/HomeScreen";
 import TaskDetailsScreen from "./screens/TaskDetailsScreen";
 import CreateTaskScreen from "./screens/CreateTaskScreen";
@@ -18,7 +18,7 @@ export type StackParams = {
     Create: undefined;
 };
 
-const Stack = createStackNavigator<StackParams>();
+const Stack = createNativeStackNavigator<StackParams>();
 
 const MainStack: React.FC = () => {
 

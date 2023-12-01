@@ -1,11 +1,48 @@
 import { CaseReducer, PayloadAction, createSlice } from '@reduxjs/toolkit';
 
+
+const data = [
+  {
+    id: 1,
+    name: 'TO DO',
+    rows: [
+      {
+        id: '1',
+        name: 'Analyze your audience',
+        description: 'Learn more about the audience to whom you will be speaking'
+      },
+    ]
+  },
+  {
+    id: 2,
+    name: 'IN PROGRESS',
+    rows: [
+      {
+        id: '4',
+        name: 'Look at drawings',
+        description: 'How did they use line and shape? How did they shade?'
+      },
+    ]
+  },
+  {
+    id: 3,
+    name: 'DONE',
+    rows: [
+      {
+        id: '7',
+        name: 'Draw from life',
+        description: 'Do you enjoy coffee? Draw your coffee cup'
+      },
+    ]
+  }
+]
+
 export type todoType = {
-  dummy:boolean;
+  data:{}[]
 }
 
 const initialState : todoType = {
-  dummy:false,
+  data:data,
 }
 
 
@@ -13,12 +50,14 @@ const todoSlice = createSlice({
   name: 'todo',
   initialState,
   reducers: {
-    initTodo: (state,action) => ({
+    onDragUpdater: (state,action) => ({
       ...state,
-      dummy: false,
+      data:action.payload,
     }),
   },
 });
 
 export default todoSlice.reducer;
-export const { initTodo } = todoSlice.actions;
+export const { onDragUpdater } = todoSlice.actions;
+
+

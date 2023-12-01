@@ -1,0 +1,28 @@
+diff --git a/node_modules/react-native-draganddrop-board/src/components/Board/Board.js b/node_modules/react-native-draganddrop-board/src/components/Board/Board.js
+index c704a8f..d716c00 100644
+--- a/node_modules/react-native-draganddrop-board/src/components/Board/Board.js
++++ b/node_modules/react-native-draganddrop-board/src/components/Board/Board.js
+@@ -147,6 +147,8 @@ class Board extends React.Component {
+     pan.setValue({ x: 0, y: 0 })
+     this.setState({ startingX: 0, startingY: 0 })
+ 
++    if(!srcColumnId|!destColumnId| !draggedItem) return;
++
+     return onDragEnd && onDragEnd(srcColumnId, destColumnId, draggedItem)
+   }
+ 
+diff --git a/node_modules/react-native-draganddrop-board/src/components/Board/Board.styled.js b/node_modules/react-native-draganddrop-board/src/components/Board/Board.styled.js
+index 1a1054c..72d8c30 100644
+--- a/node_modules/react-native-draganddrop-board/src/components/Board/Board.styled.js
++++ b/node_modules/react-native-draganddrop-board/src/components/Board/Board.styled.js
+@@ -1,6 +1,10 @@
+ import styled from 'styled-components'
+ 
+ const BoardWrapper = styled.View`
++display:'flex';
++align-items:'center';
++justify-content:'center';
++padding:20px 0px 0px 10px;
+ `
+ 
+ export { BoardWrapper }

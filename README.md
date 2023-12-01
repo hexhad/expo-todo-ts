@@ -27,6 +27,7 @@
   - mongodb Realm
   - redux-persist
   - react-native-dnd-board (or any other of your preference)
+  - react-native-draganddrop-board
 
 # Useful stuff
 
