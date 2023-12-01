@@ -7,7 +7,9 @@ import { nanoid } from '@reduxjs/toolkit';
 import { DraxWrapperProps, KanbanBoardProps, RenderKanbanTilesProps } from './types';
 
 const RenderKanbanTiles: React.FC<RenderKanbanTilesProps> = ({ tasks = [] }) => {
-    return tasks.map((task, index) => <KanbanTile  {...{ task }} />)
+    console.log('------------------------------->',tasks);
+    // return
+    return tasks.map((task) => <KanbanTile  {...{ task }} />)
 }
 const DraxWrapper: React.FC<DraxWrapperProps> = ({ children, onUpdate, data }) => {
     const onReceivedItem = ({ dragged: { payload } }: { dragged: { payload: any; }; }) => {
@@ -23,16 +25,17 @@ const DraxWrapper: React.FC<DraxWrapperProps> = ({ children, onUpdate, data }) =
     </DraxView>
 }
 const KanbanBoard: React.FC<KanbanBoardProps> = ({ data = [], onUpdate }) => {
+console.log(data);
 
     return (
         <DraxProvider style={styles.flex}>
             <DraxScrollView contentContainerStyle={styles.draxScrollView} horizontal>
-                {data.map(({ name, id, rows }, index) => {
+                {data.map(({tasks,category}, index) => {
                     return (
-                        <View style={styles.mainContainer}>
-                            <DraxWrapper onUpdate={onUpdate} data={{ name, id }}>
-                                <Text>{name}</Text>
-                                <RenderKanbanTiles {...{ tasks: rows }} />
+                        <View style={styles.mainContainer} key={index}>
+                            <DraxWrapper onUpdate={onUpdate} data={{ category }}>
+                                <Text>{category}</Text>
+                                <RenderKanbanTiles {...{ tasks }} />
                             </DraxWrapper>
                         </View>
                     )
