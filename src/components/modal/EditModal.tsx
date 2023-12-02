@@ -11,31 +11,39 @@ type ModalProps = {
     name: string;
     id: number;
     desc: string;
-    type: Category;
     hideModal: () => void;
+    type: Category;
 }
 
-const EditModal = ({ visibility = false, onUpdated, name: oldName, id, desc, type, hideModal }: ModalProps): React.JSX.Element => {
+const EditModal = (props: ModalProps): React.JSX.Element => {
 
-    const [category, setCategory] = useState<Category>(type)
+    const {
+        visibility = false,
+        onUpdated,
+        name: oldName,
+        id,
+        desc,
+        type,
+        hideModal
+    } = props;
+
     const [name, setName] = useState<string>(oldName)
     const [description, setDescription] = useState<string>(desc)
 
-    const onNameInputChange = (name: string) => {
+    const onNameInputChange = (name: string): void => {
         setName(name)
     }
-    const onDescInputChange = (desc: string) => {
+    
+    const onDescInputChange = (desc: string): void => {
         setDescription(desc)
     }
-    const radioButtonHandle = (state: Category) => {
-        setCategory(state)
-    }
-    const onPressBackButton = () => {
+
+    const onPressBackButton = (): void => {
         hideModal()
     }
-    const onPressUpdateButton = () => {
+
+    const onPressUpdateButton = (): void => {
         onUpdated({
-            category,
             description,
             name,
             id
@@ -55,22 +63,8 @@ const EditModal = ({ visibility = false, onUpdated, name: oldName, id, desc, typ
                             <InputFiled onChangeText={onNameInputChange} placeholder={'Name'} value={name} />
                             <InputFiled onChangeText={onDescInputChange} placeholder={'Description'} value={description} />
                         </View>
-                        <View className='flex-row my-6'>
-                            <RadioButton
-                                state={category === 'TODO'}
-                                onPress={() => radioButtonHandle('TODO')}
-                                label={'TODO'} />
-                            <RadioButton
-                                state={category === 'IN_PROGRESS'}
-                                onPress={() => radioButtonHandle('IN_PROGRESS')}
-                                label={'IN_PROGRESS'} />
-                            <RadioButton
-                                state={category === 'DONE'}
-                                onPress={() => radioButtonHandle('DONE')}
-                                label={'DONE'} />
 
-                        </View>
-                        <View className='flex-row'>
+                        <View className='flex-row mt-6'>
                             <ActionButton onPress={onPressBackButton} label={'Cancel'} />
                             <ActionButton onPress={onPressUpdateButton} label={'Update'} />
                         </View>

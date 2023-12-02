@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { memo } from 'react'
 import { DraxProvider, DraxView, DraxScrollView } from 'react-native-drax';
 import { KanbanTileProps } from './types';
 
@@ -25,7 +25,7 @@ const KanbanTile: React.FC<KanbanTileProps> = ({ task, onPressItem }) => {
     )
 }
 
-export default KanbanTile;
+export default memo(KanbanTile);
 
 const styles = StyleSheet.create({
     cardContainer: { backgroundColor: '#fff', margin: 10, padding: 10, borderRadius: 3 },

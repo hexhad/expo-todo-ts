@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, SafeAreaView, TextInput, Alert } from 'react-native'
-import React, { useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { StackParams } from '../MainStack'
 import { RootNavigation } from '@/services/RootNavigation'
@@ -14,24 +14,29 @@ type Props = NativeStackScreenProps<StackParams, "Create">
 
 const CreateTaskScreen: React.FC<Props> = () => {
 
-  const [category, setCategory] = useState<Category>('TODO')
-  const [name, setName] = useState<string>('')
-  const [description, setDescription] = useState<string>('')
+  const [category, setCategory] = useState<Category>('TODO');
+  const [name, setName] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+  const [error, setError] = useState<boolean>(false)
 
   const dispatch = useAppDispatch();
   const basicUserInfo = useAppSelector((state) => state.todo);
 
 
   const onPressSaveButton = () => {
-    dispatch(addCardData({ name, description, category }));
-    Alert.alert('Success', 'Your item has been successfully added to the Kanban Board. Would you like to view it?', [
-      {
-        text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
-        style: 'cancel',
-      },
-      { text: 'OK', onPress: onPressBackButton },
-    ]);
+    if (!!name) {
+      dispatch(addCardData({ name, description, category }));
+      Alert.alert('Success', 'Your item has been successfully added to the Kanban Board. Would you like to view it?', [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        { text: 'OK', onPress: onPressBackButton },
+      ]);
+    } else {
+      setError(true);
+    }
   }
 
   const onPressBackButton = () => {
@@ -49,6 +54,12 @@ const CreateTaskScreen: React.FC<Props> = () => {
     setCategory(type)
   }
 
+  useEffect(() => {
+    if (!!name) {
+      setError(false)
+    }     
+  }, [name])
+  
 
   return (
     <SafeAreaView className='flex-1'>
@@ -57,7 +68,7 @@ const CreateTaskScreen: React.FC<Props> = () => {
           <Text className='py-10 text-2xl'>Create Task</Text>
         </View>
         <View>
-          <InputFiled onChangeText={onNameInputChange} placeholder={'Name'} />
+          <InputFiled onChangeText={onNameInputChange} placeholder={'Name'} error={error}/>
           <InputFiled onChangeText={onDescInputChange} placeholder={'Description'} />
         </View>
         <View className='flex-row my-6'>
@@ -86,4 +97,4 @@ const CreateTaskScreen: React.FC<Props> = () => {
   )
 }
 
-export default CreateTaskScreen;
+export default memo(CreateTaskScreen);

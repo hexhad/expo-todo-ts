@@ -9,7 +9,6 @@ import { Category, deleteCard, updateCard } from '@/redux/slices/todoSlice'
 import { useAppDispatch } from '@/redux/store'
 
 type ModalActionProps = {
-    category: Category;
     description: string;
     name: string;
     id: number;
@@ -21,14 +20,17 @@ const TaskDetailsScreen: React.FC<Props> = ({ route: { params } }) => {
     const { name, desc, id, category } = params;
     const dispatch = useAppDispatch();
 
-    const [modalVisibility, setMdalVisibility] = useState<boolean>(false)
-    const onPressBackButton = () => {
+    const [modalVisibility, setMdalVisibility] = useState<boolean>(false);
+
+    const onPressBackButton = ():void => {
         RootNavigation.goBack()
     }
-    const onPressUpdateButton = () => {
+
+    const onPressUpdateButton = ():void => {
         setMdalVisibility(true)
     }
-    const onPressDeleteButton = () => {
+
+    const onPressDeleteButton = ():void => {
         Alert.alert('Delete', 'Are you certain you want to delete this item?', [
             {
                 text: 'No',
@@ -43,28 +45,27 @@ const TaskDetailsScreen: React.FC<Props> = ({ route: { params } }) => {
 
     }
 
-    const handleModalOutcome = ({ category: newCategory, description, name, id }: ModalActionProps) => {
+    const handleModalOutcome = ({  description, name, id }: ModalActionProps):void => {
         dispatch(updateCard({
             description,
             id,
             name,
-            newCategory,
-            category
         }))
 
     }
 
-    const handleModalVisibility = () => {
-        setMdalVisibility(false)
-    }
+    const handleModalVisibility = ():void => {
+        setMdalVisibility(false);
+        onPressBackButton();
 
+    }
 
 
     return (
         <SafeAreaView className='flex-1'>
             <View className="flex-1 items-center justify-center bg-white ">
                 <View>
-                    <Text className='py-10 text-2xl'>Create Task</Text>
+                    <Text className='py-10 text-2xl'>Task details</Text>
                 </View>
 
                 <View className='my-4'>

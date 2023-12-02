@@ -87,55 +87,34 @@ const todoSlice = createSlice({
       return deepProcessedMainObj
     },
     updateCard: (state, action) => {
-      console.log(action.payload);
-      const {description, id, name, newCategory, category:oldCategory} = action.payload;
+      const { description, id, name } = action.payload;
       return ({
-      ...state,
-      data: state.data.map(({ category, tasks }) => {
-        console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',newCategory ,oldCategory);
-        console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',category , oldCategory);
-
-        
-        if (newCategory !== oldCategory && category == oldCategory){
-          console.log(tasks);
-          console.log(tasks.filter((item) => item.id !== id));
-          
-          return {
-            category,
-            tasks: tasks.filter((item) => item.id !== id)
-          }
-        }else if (category == newCategory) {
+        ...state,
+        data: state.data.map(({ category, tasks }) => {
           return {
             category,
             tasks: tasks.map((item) => {
               if (item.id == id) {
-                console.log('ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD');
-                
                 return {
+                  ...item,
                   description,
                   id,
                   name,
-                  current:newCategory,
                 }
               } else {
-                console.log('ADDDDDDDDDDDDDDDDDDDDDDDDDRRRRRRRRRRRRRRRRRRRRDDDDDDDDDDDDDDDDDDDDD');
                 return item;
               }
             })
           }
-        }else {
-          return {
-            category,
-            tasks
-          }
-        }
+
+        })
       })
-    })},
+    },
     deleteCard: (state, action) => ({
       ...state,
-      data:state.data.map(({category,tasks})=>({
+      data: state.data.map(({ category, tasks }) => ({
         category,
-        tasks:tasks.filter(item=>item.id!==action.payload.id)
+        tasks: tasks.filter(item => item.id !== action.payload.id)
       }))
     })
   },

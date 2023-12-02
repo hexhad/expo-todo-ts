@@ -6,8 +6,8 @@ type FloatingActionButtonProps = {
 }
 const FloatingActionButton:React.FC<FloatingActionButtonProps> = ({onPress}) => {
   return (
-    <TouchableOpacity onPress={onPress} className='h-14 w-14 bg-red-400 rounded-full absolute bottom-2 right-2 items-center justify-center'>
-      <Text  className="text-xl">+</Text>
+    <TouchableOpacity onPress={onPress} className='h-16 w-16 bg-red-400 rounded-full absolute bottom-5 right-5 items-center justify-center'>
+      <Text  className="text-3xl">+</Text>
     </TouchableOpacity>
   )
 }
