@@ -2,7 +2,7 @@
 
 ## DEMO
 
-![](./demo/demo.mp4)
+[![Demo Video](https://img.youtube.com/vi/hexhad/0.jpg)](https://www.youtube.com/watch?v=APu4rbl4ctk)
 
 
 ### Requirements
