@@ -1,5 +1,9 @@
 ## Expo Todo APP : TS
 
+## DEMO
+
+![](./demo/demo.mp4)
+
 
 ### Requirements
 
