@@ -1,9 +1,8 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { memo } from 'react'
-import type { PropsWithChildren } from 'react'
 import { DraxProvider, DraxView, DraxScrollView } from 'react-native-drax';
-import KanbanTile from './KanbanTile';
 import { nanoid } from '@reduxjs/toolkit';
+import KanbanTile from './KanbanTile';
 import { DraxWrapperProps, KanbanBoardProps, RenderKanbanTilesProps } from './types';
 
 const RenderKanbanTiles: React.FC<RenderKanbanTilesProps> = ({ tasks = [], onPressItem }) => {

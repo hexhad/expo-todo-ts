@@ -15,7 +15,7 @@ export type StackParams = {
         name: string;
         desc: string;
         id: number;
-        category:Category
+        category: Category
     };
     Create: undefined;
 };
@@ -34,7 +34,7 @@ const MainStack: React.FC = () => {
                 <Stack.Group>
                     <Stack.Screen name="Home" component={HomeScreen} />
                 </Stack.Group>
-                <Stack.Group screenOptions={{presentation:'modal'}}>
+                <Stack.Group screenOptions={{ presentation: 'modal' }}>
                     <Stack.Screen name="Details" component={TaskDetailsScreen} />
                     <Stack.Screen name="Create" component={CreateTaskScreen} />
                 </Stack.Group>

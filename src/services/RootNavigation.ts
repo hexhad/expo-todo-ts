@@ -11,7 +11,7 @@ const navigate: React.FC<keyof StackParams> = (path: any, params: any) => {
   return null;
 };
 
-const goBack = () => {
+const goBack = (): void => {
   if (navigationRef.isReady() && navigationRef.canGoBack()) {
     navigationRef.goBack();
   }

@@ -1,13 +1,13 @@
-import {  Text, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 
 type FloatingActionButtonProps = {
-    onPress:()=> any;
+  onPress: () => any;
 }
-const FloatingActionButton:React.FC<FloatingActionButtonProps> = ({onPress}) => {
+const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({ onPress }) => {
   return (
-    <TouchableOpacity onPress={onPress} className='h-16 w-16 bg-red-400 rounded-full absolute bottom-5 right-5 items-center justify-center'>
-      <Text  className="text-3xl">+</Text>
+    <TouchableOpacity onPress={onPress} className={'h-16 w-16 bg-red-400 rounded-full absolute bottom-5 right-5 items-center justify-center'}>
+      <Text className="text-3xl">+</Text>
     </TouchableOpacity>
   )
 }

@@ -1,13 +1,13 @@
-import { CaseReducer, PayloadAction, createSlice, nanoid } from '@reduxjs/toolkit';
+import { createSlice, nanoid } from '@reduxjs/toolkit';
+
+export type Category = 'TODO' | 'IN_PROGRESS' | 'DONE';
 
 type Task = {
   description: string;
   id: string;
   name: string;
-  current: 'TODO' | 'IN_PROGRESS' | 'DONE'; // Assuming these are the possible task statuses
+  current: Category // Assuming these are the possible task statuses
 };
-
-export type Category = 'TODO' | 'IN_PROGRESS' | 'DONE';
 
 type TodoType = {
   data: {

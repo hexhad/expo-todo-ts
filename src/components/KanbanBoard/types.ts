@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react'
 
 export type RenderKanbanTilesProps = {
-    tasks: {id:number}[];
+    tasks: { id: number }[];
     onPressItem: (payload: any) => any;
 }
 export type KanbanBoardProps = PropsWithChildren & {
@@ -17,7 +17,7 @@ export type KanbanTileProps = {
     task: {
         id: string | number;
         name?: string | undefined;
-        description?:string | undefined;
+        description?: string | undefined;
     };
     onPressItem: (payload: any) => any;
 }

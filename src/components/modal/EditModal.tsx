@@ -1,9 +1,8 @@
 import { View, Text, Modal } from 'react-native'
 import React, { useState } from 'react'
-import RadioButton from '../buttons/RadioButton';
-import ActionButton from '../buttons/ActionButton';
 import InputFiled from '../inputField/InputFiled';
 import { Category } from '@/redux/slices/todoSlice';
+import ActionButton from '../buttons/ActionButton';
 
 type ModalProps = {
     visibility: boolean;
@@ -33,7 +32,7 @@ const EditModal = (props: ModalProps): React.JSX.Element => {
     const onNameInputChange = (name: string): void => {
         setName(name)
     }
-    
+
     const onDescInputChange = (desc: string): void => {
         setDescription(desc)
     }
@@ -53,18 +52,18 @@ const EditModal = (props: ModalProps): React.JSX.Element => {
     return (
         <Modal visible={visibility} transparent >
 
-            <View className=' flex-1 items-center justify-center' style={{ backgroundColor: '#00000032' }}>
-                <View className=' bg-white py-7 px-2 rounded'>
-                    <View className="items-center justify-center bg-white ">
+            <View className={' flex-1 items-center justify-center'} style={{ backgroundColor: '#00000032' }}>
+                <View className={' bg-white py-7 px-2 rounded'}>
+                    <View className={"items-center justify-center bg-white "}>
                         <View>
-                            <Text className='py-5 text-2xl'>Update Task</Text>
+                            <Text className={'py-5 text-2xl'}>Update Task</Text>
                         </View>
                         <View>
                             <InputFiled onChangeText={onNameInputChange} placeholder={'Name'} value={name} />
-                            <InputFiled onChangeText={onDescInputChange} placeholder={'Description'} value={description} />
+                            <InputFiled onChangeText={onDescInputChange} placeholder={'Description'} value={description} multiLine/>
                         </View>
 
-                        <View className='flex-row mt-6'>
+                        <View className={'flex-row mt-6'}>
                             <ActionButton onPress={onPressBackButton} label={'Cancel'} />
                             <ActionButton onPress={onPressUpdateButton} label={'Update'} />
                         </View>
