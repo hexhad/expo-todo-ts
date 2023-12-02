@@ -6,8 +6,8 @@ import KanbanTile from './KanbanTile';
 import { nanoid } from '@reduxjs/toolkit';
 import { DraxWrapperProps, KanbanBoardProps, RenderKanbanTilesProps } from './types';
 
-const RenderKanbanTiles: React.FC<RenderKanbanTilesProps> = ({ tasks = [] }) => {
-    return tasks.map((task) => <KanbanTile  {...{ task }} key={task.id}/>)
+const RenderKanbanTiles: React.FC<RenderKanbanTilesProps> = ({ tasks = [], onPressItem}) => {
+    return tasks.map((task) => <KanbanTile  onPressItem={()=>onPressItem({task})} {...{ task }} key={task.id}/>)
 }
 const DraxWrapper: React.FC<DraxWrapperProps> = ({ children, onUpdate, data }) => {
     const onReceivedItem = ({ dragged: { payload } }: { dragged: { payload: any; }; }) => {
@@ -22,7 +22,7 @@ const DraxWrapper: React.FC<DraxWrapperProps> = ({ children, onUpdate, data }) =
         {children}
     </DraxView>
 }
-const KanbanBoard: React.FC<KanbanBoardProps> = ({ data = [], onUpdate }) => {
+const KanbanBoard: React.FC<KanbanBoardProps> = ({ data = [], onUpdate,onPressItem }) => {
     return (
         <DraxProvider style={styles.flex}>
             <DraxScrollView contentContainerStyle={styles.draxScrollView} horizontal>
@@ -33,7 +33,7 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ data = [], onUpdate }) => {
                                 
                                     <Text className='text-red-200 text-lg'>{category}</Text>
                                     <ScrollView className='bg-gray-900 rounded flex-1 mt-2'>
-                                    <RenderKanbanTiles {...{ tasks }} />
+                                    <RenderKanbanTiles onPressItem={onPressItem} {...{ tasks }} />
                                 </ScrollView>
                             </DraxWrapper>
                         </View>
@@ -48,6 +48,6 @@ export default KanbanBoard
 
 const styles = StyleSheet.create({
     draxScrollView: { flexDirection: 'row' },
-    mainContainer: { width: 300, backgroundColor: '#374151', marginRight: 10, flex: 1, padding: 10 },
+    mainContainer: { width: 300, backgroundColor: '#374151', marginRight: 10, flex: 1, padding: 10,  },
     flex: { flex: 1 }
 })

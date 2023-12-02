@@ -3,17 +3,24 @@ import React from 'react'
 import { DraxProvider, DraxView, DraxScrollView } from 'react-native-drax';
 import { KanbanTileProps } from './types';
 
-const KanbanTile: React.FC<KanbanTileProps> = ({ task }) => {
+const KanbanTile: React.FC<KanbanTileProps> = ({ task, onPressItem }) => {
     return (
         <DraxView
             key={task.id}
             dragReleasedStyle={{ opacity: 0 }}
+            draggingStyle={{opacity: 0}}
+            draggingWithReceiverStyle={{opacity: 0}}
+            hoverDraggingStyle={{
+                transform: [ {rotateZ: '-0.2rad'}],
+            }}
             style={styles.cardContainer}
             dragPayload={task}
-            longPressDelay={5}
+            longPressDelay={500}
         >
+            <TouchableOpacity onPress={onPressItem}>
             <Text style={styles.orange}>{task?.name}</Text>
             <Text style={styles.orange}>{task?.description}</Text>
+            </TouchableOpacity>
         </DraxView>
     )
 }

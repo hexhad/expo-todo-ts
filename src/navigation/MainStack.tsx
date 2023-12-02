@@ -6,6 +6,7 @@ import HomeScreen from "./screens/HomeScreen";
 import TaskDetailsScreen from "./screens/TaskDetailsScreen";
 import CreateTaskScreen from "./screens/CreateTaskScreen";
 import { navigationRef } from "@/services/RootNavigation";
+import { Category } from "@/redux/slices/todoSlice";
 
 
 export type StackParams = {
@@ -13,7 +14,8 @@ export type StackParams = {
     Details: {
         name: string;
         desc: string;
-        uuid: number;
+        id: number;
+        category:Category
     };
     Create: undefined;
 };

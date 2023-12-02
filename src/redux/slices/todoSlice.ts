@@ -21,9 +21,7 @@ const initialState: TodoType = {
   data: [
     {
       category: 'TODO',
-      tasks: [
-        { description: "How did they use line and shape? How did they shade?", id: "4", name: "Look at drawings", current: 'TODO' }
-      ]
+      tasks: []
     }, {
       category: 'IN_PROGRESS',
       tasks: []
@@ -40,7 +38,7 @@ const todoSlice = createSlice({
   reducers: {
     addCardData: (state, action) => ({
       ...state,
-        data: state.data.map(({ category, tasks }) => {
+      data: state.data.map(({ category, tasks }) => {
         if (category == action.payload.category) {
           return {
             category,
@@ -50,7 +48,7 @@ const todoSlice = createSlice({
                 description: action.payload.description,
                 id: nanoid(),
                 name: action.payload.name,
-                current: 'TODO'
+                current: action.payload.category,
               }
             ]
           }
@@ -88,8 +86,60 @@ const todoSlice = createSlice({
       }
       return deepProcessedMainObj
     },
+    updateCard: (state, action) => {
+      console.log(action.payload);
+      const {description, id, name, newCategory, category:oldCategory} = action.payload;
+      return ({
+      ...state,
+      data: state.data.map(({ category, tasks }) => {
+        console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',newCategory ,oldCategory);
+        console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',category , oldCategory);
+
+        
+        if (newCategory !== oldCategory && category == oldCategory){
+          console.log(tasks);
+          console.log(tasks.filter((item) => item.id !== id));
+          
+          return {
+            category,
+            tasks: tasks.filter((item) => item.id !== id)
+          }
+        }else if (category == newCategory) {
+          return {
+            category,
+            tasks: tasks.map((item) => {
+              if (item.id == id) {
+                console.log('ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD');
+                
+                return {
+                  description,
+                  id,
+                  name,
+                  current:newCategory,
+                }
+              } else {
+                console.log('ADDDDDDDDDDDDDDDDDDDDDDDDDRRRRRRRRRRRRRRRRRRRRDDDDDDDDDDDDDDDDDDDDD');
+                return item;
+              }
+            })
+          }
+        }else {
+          return {
+            category,
+            tasks
+          }
+        }
+      })
+    })},
+    deleteCard: (state, action) => ({
+      ...state,
+      data:state.data.map(({category,tasks})=>({
+        category,
+        tasks:tasks.filter(item=>item.id!==action.payload.id)
+      }))
+    })
   },
 });
 
 export default todoSlice.reducer;
-export const { updateDraggedData, addCardData } = todoSlice.actions;
+export const { updateDraggedData, addCardData, updateCard, deleteCard } = todoSlice.actions;

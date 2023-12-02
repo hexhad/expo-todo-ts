@@ -8,9 +8,9 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from '@/redux/store'
 import { getKabanBoard } from '@/redux/selectors/todoSelector'
-import KanbanBoard from '@/components/KanbanBoard/KanbanBoard'
+import KanbanBoard from '@/components/kanbanBoard/KanbanBoard'
 import { addCardData, updateDraggedData } from '@/redux/slices/todoSlice'
-import FloatingActionButton from '@/components/Buttons/FloatingActionButton'
+import FloatingActionButton from '@/components/buttons/FloatingActionButton'
 
 type Props = NativeStackScreenProps<StackParams, "Home">
 
@@ -18,20 +18,29 @@ const HomeScreen: React.FC<Props> = () => {
   const kanbanData = useSelector(getKabanBoard);
   const dispatch = useAppDispatch();
 
-  const onPressActionButton = ():void => {
+  const onPressActionButton = (): void => {
     RootNavigation.navigate('Create')
   }
-  
-  return (
-    <SafeAreaView className="flex-1 items-center justify-center bg-white ">
-      <KanbanBoard data={kanbanData} onUpdate={(e)=>{
-        if(e.child.current===e.parent.category){
-          RootNavigation.navigate('Details',{e});
-        }
-        dispatch(updateDraggedData(e))
-      }}/>
 
-      <FloatingActionButton onPress={onPressActionButton}/>
+  const onDragEvent = (task: {}) => {
+    dispatch(updateDraggedData(task))
+  }
+
+  const onPressItem = ({ task }: { task: any }) => {
+    const { description: desc, id, name, current: category } = task
+    RootNavigation.navigate('Details', {
+      name,
+      desc,
+      id,
+      category
+    })
+  }
+
+
+  return (
+    <SafeAreaView className="flex-1 items-center justify-center bg-slate-800 ">
+      <KanbanBoard data={kanbanData} onUpdate={onDragEvent} onPressItem={onPressItem} />
+      <FloatingActionButton onPress={onPressActionButton} />
     </SafeAreaView>
   )
 }

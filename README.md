@@ -35,3 +35,7 @@
 ```bash
 npx expo-doctor
 ```
+
+```bash
+npx expo start --tunnel --clear
+```
