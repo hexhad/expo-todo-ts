@@ -4,10 +4,10 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { StackParams } from '../MainStack'
 import { RootNavigation } from '@/services/RootNavigation'
 import { useAppDispatch, useAppSelector } from '@/redux/store'
-import ActionButton from '@/components/buttons/ActionButton'
+import ActionButton from '@/components/customButtons/ActionButton'
 import InputFiled from '@/components/inputField/InputFiled'
 import { Category, addCardData } from '@/redux/slices/todoSlice'
-import RadioButton from '@/components/buttons/RadioButton'
+import RadioButton from '@/components/customButtons/RadioButton'
 
 type Props = NativeStackScreenProps<StackParams, "Create">
 

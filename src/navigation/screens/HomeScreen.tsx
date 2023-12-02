@@ -7,8 +7,8 @@ import { useSelector } from 'react-redux'
 import { useAppDispatch } from '@/redux/store'
 import { getKabanBoard } from '@/redux/selectors/todoSelector'
 import { updateDraggedData } from '@/redux/slices/todoSlice'
-import KanbanBoard from '@/components/kanbanBoard/KanbanBoard'
-import FloatingActionButton from '@/components/buttons/FloatingActionButton'
+import KanbanBoard from '@/components/dragxKanbanBoard/KanbanBoard'
+import FloatingActionButton from '@/components/customButtons/FloatingActionButton'
 
 type Props = NativeStackScreenProps<StackParams, "Home">
 

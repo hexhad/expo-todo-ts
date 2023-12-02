@@ -6,7 +6,7 @@ import { RootNavigation } from '@/services/RootNavigation'
 import EditModal from '@/components/modal/EditModal'
 import { deleteCard, updateCard } from '@/redux/slices/todoSlice'
 import { useAppDispatch } from '@/redux/store'
-import ActionButton from '@/components/buttons/ActionButton'
+import ActionButton from '@/components/customButtons/ActionButton'
 
 type ModalActionProps = {
     description: string;

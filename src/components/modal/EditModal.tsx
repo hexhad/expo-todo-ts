@@ -2,7 +2,7 @@ import { View, Text, Modal } from 'react-native'
 import React, { useState } from 'react'
 import InputFiled from '../inputField/InputFiled';
 import { Category } from '@/redux/slices/todoSlice';
-import ActionButton from '../buttons/ActionButton';
+import ActionButton from '../customButtons/ActionButton';
 
 type ModalProps = {
     visibility: boolean;
