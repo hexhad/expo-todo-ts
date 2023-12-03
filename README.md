@@ -12,10 +12,8 @@ yarn start
 
 ## DEMO
 
-[![Demo Video](https://img.youtube.com/vi/hexhad/0.jpg)](https://www.youtube.com/watch?v=APu4rbl4ctk "Kanban Board")
-
 <div align="center">
-  <a href="https://www.youtube.com/watch?v=APu4rbl4ctk"><img src="https://img.youtube.com/vi/hexhad/0.jpg" alt="Kanban Board"></a>
+  <a href="https://www.youtube.com/watch?v=APu4rbl4ctk"><img src="https://img.youtube.com/vi/APu4rbl4ctk/0.jpg" alt="Kanban Board"></a>
 </div>
 
 
