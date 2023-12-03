@@ -1,8 +1,22 @@
 ## Expo Todo APP : TS
 
+## Instructions
+
+### Clone the project and rn
+
+```bash
+yarn install
+yarn start
+```
+
+
 ## DEMO
 
-[![Demo Video](https://img.youtube.com/vi/hexhad/0.jpg)](https://www.youtube.com/watch?v=APu4rbl4ctk)
+[![Demo Video](https://img.youtube.com/vi/hexhad/0.jpg)](https://www.youtube.com/watch?v=APu4rbl4ctk "Kanban Board")
+
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=APu4rbl4ctk"><img src="https://img.youtube.com/vi/hexhad/0.jpg" alt="Kanban Board"></a>
+</div>
 
 
 ### Requirements
