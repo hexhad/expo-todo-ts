@@ -9,7 +9,7 @@ type Task = {
   current: Category // Assuming these are the possible task statuses
 };
 
-type TodoType = {
+export type TodoType = {
   data: {
     category: Category;
     tasks: Task[];
@@ -17,7 +17,7 @@ type TodoType = {
 };
 
 
-const initialState: TodoType = {
+export const initialState: TodoType = {
   data: [
     {
       category: 'TODO',

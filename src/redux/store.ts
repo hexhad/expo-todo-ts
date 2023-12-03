@@ -4,12 +4,17 @@ import rootReducer, { RootState } from './slices/rootReducer'
 import logger from 'redux-logger';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { realmStorage } from '@/services/realm/realmStorage';
 
 const persistConfig = {
   key: 'root',
-  storage: AsyncStorage,
-  whitelist: ['todo']
+  // storage: AsyncStorage,
+  storage:realmStorage,
 }
+
+// realmStorage.setItem('a','b',()=>{console.log('here');
+// });
+
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const store = configureStore({
